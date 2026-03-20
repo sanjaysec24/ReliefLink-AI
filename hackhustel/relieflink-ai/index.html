@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ReliefLink AI - Intelligent Crisis & Disaster Logistics System">
+    <title>ReliefLink AI</title>
+    <!-- Modern Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Animated Abstract Background -->
+    <div class="bg-shape shape-1"></div>
+    <div class="bg-shape shape-2"></div>
+    <div class="bg-shape shape-3"></div>
+
+    <main class="app-container">
+        <!-- Dashboard Header -->
+        <header class="app-header">
+            <div class="logo">
+                <i data-lucide="radio-tower" class="logo-icon"></i>
+                <span>ReliefLink AI</span>
+            </div>
+            <div class="header-status">
+                <span class="status-dot"></span> System Online
+            </div>
+        </header>
+
+        <!-- 1. Home Screen -->
+        <section id="screen-home" class="screen" style="display: flex;">
+            <div class="hero">
+                <div class="hero-badge">Crisis Resilience Alpha</div>
+                <h1 class="title">Intelligent Crisis & <br><span class="gradient-text">Disaster Logistics</span> System</h1>
+                <p class="tagline">"Right Resources. Right Place. Right Time."</p>
+                <p class="description">Optimizing supply chains during emergencies with AI-driven allocation. Anticipate needs, dynamically route assets, and save lives faster.</p>
+                <button id="btn-start" class="btn btn-primary btn-large">
+                    Start Analysis <i data-lucide="arrow-right"></i>
+                </button>
+            </div>
+            <div class="hero-visual">
+                <div class="glass-orb">
+                   <i data-lucide="globe-2" class="orb-icon"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Input Screen -->
+        <section id="screen-input" class="screen" style="display: none;">
+            <div class="form-card glass">
+                <button class="btn-back" id="btn-back-home"><i data-lucide="arrow-left"></i> Back</button>
+                <h2>Configuration Parameters</h2>
+                <p class="subtitle">Enter the current crisis parameters to generate an optimal logistics plan.</p>
+                
+                <form id="analysis-form" class="input-form">
+                    <div class="form-group">
+                        <label for="region">Target Region</label>
+                        <div class="select-wrapper">
+                            <i data-lucide="map-pin" class="input-icon"></i>
+                            <select id="region" required>
+                                <option value="" disabled selected>Select an affected zone...</option>
+                                <option value="Zone A">Zone A</option>
+                                <option value="Zone B">Zone B</option>
+                                <option value="Zone C">Zone C</option>
+                            </select>
+                            <i data-lucide="chevron-down" class="dropdown-icon"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="severity">Severity Level</label>
+                        <div class="select-wrapper">
+                            <i data-lucide="alert-triangle" class="input-icon"></i>
+                            <select id="severity" required>
+                                <option value="" disabled selected>Determine crisis severity...</option>
+                                <option value="High">High</option>
+                                <option value="Medium">Medium</option>
+                                <option value="Low">Low</option>
+                            </select>
+                            <i data-lucide="chevron-down" class="dropdown-icon"></i>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="resource">Resource Type</label>
+                        <div class="select-wrapper">
+                            <i data-lucide="package" class="input-icon"></i>
+                            <select id="resource" required>
+                                <option value="" disabled selected>Select primary resource needed...</option>
+                                <option value="Medical">Medical</option>
+                                <option value="Food">Food</option>
+                                <option value="Water">Water</option>
+                            </select>
+                            <i data-lucide="chevron-down" class="dropdown-icon"></i>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block">
+                        Analyze & Allocate <i data-lucide="activity"></i>
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Loading Screen -->
+        <section id="screen-loading" class="screen" style="display: none;">
+            <div class="loading-container glass">
+                <div class="spinner-ring"></div>
+                <h2 class="loading-text">Analyzing crisis data...</h2>
+                <p class="subtitle text-sm">Processing real-time nodes and fleet availability</p>
+            </div>
+        </section>
+
+        <!-- 3. Result Dashboard Screen -->
+        <section id="screen-result" class="screen" style="display: none;">
+            <div class="dashboard">
+                <div class="dashboard-header">
+                    <div>
+                        <button class="btn-back" id="btn-back-input"><i data-lucide="arrow-left"></i> New Analysis</button>
+                        <h2>Crisis Response Dashboard</h2>
+                        <div class="ai-badge"><i data-lucide="cpu"></i> AI-Powered Allocation Engine</div>
+                        <p class="subtitle text-sm" style="margin-top: 0.5rem;">Real-time allocation plan for <span id="res-region" class="highlight">Zone</span></p>
+                    </div>
+                    <div class="timestamp" id="current-time">14:02:45 GMT</div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <!-- Priority Card -->
+                    <div class="dash-card glass priority-card stagger-1">
+                        <div class="card-header">
+                            <h3>Priority Status</h3>
+                            <i data-lucide="siren" class="card-icon"></i>
+                        </div>
+                        <div class="priority-indicator" id="priority-indicator">
+                            <div class="pulse-ring" id="pulse-indicator"></div>
+                            <span id="res-priority-text" class="priority-text">CRITICAL</span>
+                        </div>
+                        <div class="priority-desc" id="res-priority-desc">Deploying maximum available fleet immediately.</div>
+                        <div class="priority-reasoning">Priority assigned based on severity level and resource demand.</div>
+                    </div>
+
+                    <!-- Target Card -->
+                    <div class="dash-card glass stagger-2">
+                        <div class="card-header">
+                            <h3>Target Destination</h3>
+                            <i data-lucide="target" class="card-icon"></i>
+                        </div>
+                        <div class="card-content">
+                            <div class="target-value" id="res-target">Hospital Main Wing</div>
+                            <div class="target-meta">Based on resource: <span id="res-resource-type" class="text-white font-medium">Medical</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Logistics Card -->
+                    <div class="dash-card glass logistics-card stagger-3">
+                        <div class="card-header">
+                            <h3>Logistics Details</h3>
+                            <i data-lucide="truck" class="card-icon"></i>
+                        </div>
+                        <div class="logistics-list">
+                            <div class="log-item">
+                                <span class="log-label">Estimated Time of Arrival (ETA)</span>
+                                <span class="log-value highlight-value" id="res-eta">45 mins</span>
+                            </div>
+                            <div class="log-item">
+                                <span class="log-label">Suggested Route</span>
+                                <span class="log-value route-value" id="res-route">Route 1 (Highway 4, avoiding Main Bridge)</span>
+                            </div>
+                            <div class="log-item">
+                                <span class="log-label">Recommended Allocation</span>
+                                <span class="log-value" id="res-allocation">3 Helicopters, 5 Ground Units</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Map Visual Mock Card -->
+                    <div class="dash-card glass map-card stagger-4">
+                         <div class="card-header">
+                            <h3>Routing Visualization</h3>
+                            <i data-lucide="map" class="card-icon"></i>
+                        </div>
+                        <div class="map-mockup">
+                            <div class="map-nodes">
+                                <div class="node origin"><span class="node-label">HQ</span></div>
+                                <div class="pathline active"></div>
+                                <div class="node waypoint"><span class="node-label">CP1</span></div>
+                                <div class="pathline active"></div>
+                                <div class="node destination" id="map-dest"><span class="node-label">Drop</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Demand vs Supply Card -->
+                    <div class="dash-card glass demand-card stagger-5">
+                        <div class="card-header">
+                            <h3>Resource Analysis</h3>
+                            <i data-lucide="bar-chart-2" class="card-icon"></i>
+                        </div>
+                        <div class="demand-stats">
+                            <div class="stat-row">
+                                <span>Required Supply</span>
+                                <span class="stat-val" id="res-required">500 units</span>
+                            </div>
+                            <div class="stat-row">
+                                <span>Available at Hub</span>
+                                <span class="stat-val" id="res-available">300 units</span>
+                            </div>
+                        </div>
+                        <div class="shortage-alert" id="res-shortage">
+                            <i data-lucide="alert-circle"></i> Shortage detected – Immediate dispatch required
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Lucide Icons Library -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="app.js"></script>
+</body>
+</html>
