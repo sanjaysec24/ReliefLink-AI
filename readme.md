@@ -39,8 +39,8 @@ ReliefLink AI helps reduce delays, minimize resource wastage, and improve emerge
 
 ## 👨‍💻 Author & Teammates
 
-Sanjay Kumar B
-Deepak Krishna
-Gayathri K
+Sanjay Kumar B,
+Deepak Krishna,
+Gayathri K,
 Kesavan S
 
